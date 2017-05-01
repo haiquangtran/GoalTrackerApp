@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -20,7 +20,7 @@ export class MyApp {
   goals: Array<GoalPage>;
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -47,7 +47,29 @@ export class MyApp {
   }
 
   addPage() {
-    this.pages.push( { title: "new Goal", component: GoalPage} );
+    let newPageAlert = this.alertCtrl.create({
+      title: 'New Goal',
+      message: 'What is your new goal?',
+      inputs: [{
+        name: 'name',
+        placeholder: 'I want to...'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        handler: data => {
+          console.log('Cancel clicked');
+        }
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          console.log('Saved clicked' + data.name);
+          this.pages.push({ title: data.name, component: GoalPage });
+        }
+      }]
+    });
+
+    newPageAlert.present();
   }
 
   isActivePage(page): boolean {
