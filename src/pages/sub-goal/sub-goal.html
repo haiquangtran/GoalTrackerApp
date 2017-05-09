@@ -1,0 +1,31 @@
+<!--
+  Generated template for the SubGoal page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>subGoal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="newItem.title"></ion-input>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-input type="text" [(ngModel)]="newItem.description"></ion-input>
+    </ion-item>
+ 
+  </ion-list>
+ 
+  <button full ion-button color="secondary" (click)="saveItem()">Save</button> 
+</ion-content>

@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MyData } from '../providers/my-data';
 
 import { GoalPage } from '../pages/goal/goal';
 import { HomePage } from '../pages/home/home';
@@ -20,7 +21,8 @@ export class MyApp {
   goals: Array<GoalPage>;
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public alertCtrl: AlertController) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+    public alertCtrl: AlertController, public myDataService: MyData) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -28,6 +30,11 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'List', component: ListPage }
     ];
+
+    // this.myDataService.getData().then((data) => {
+    //   this.pages = JSON.parse(data);
+    // });
+
   }
 
   initializeApp() {
@@ -65,6 +72,7 @@ export class MyApp {
         handler: data => {
           console.log('Saved clicked' + data.name);
           this.pages.push({ title: data.name, component: GoalPage });
+          // this.myDataService.save(this.pages);
         }
       }]
     });
