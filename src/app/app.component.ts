@@ -23,7 +23,7 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: this.rootPage },
+      { title: 'Home', component: 'GoalPage' },
       { title: 'List', component: 'ListPage' }
     ];
 
@@ -67,7 +67,9 @@ export class MyApp {
         text: 'Save',
         handler: data => {
           console.log('Saved clicked' + data.name);
-          this.pages.push({ title: data.name, component: 'GoalPage' });
+          var newGoalPage = { title: data.name, component: 'GoalPage' };
+          this.pages.push(newGoalPage);
+          this.nav.push(newGoalPage.component);
           // this.myDataService.save(this.pages);
         }
       }]
