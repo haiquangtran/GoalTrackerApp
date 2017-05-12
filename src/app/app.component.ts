@@ -4,21 +4,17 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyData } from '../providers/my-data';
 
-import { GoalPage } from '../pages/goal/goal';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
-  activePage: any = HomePage;
+  public rootPage: any = 'HomePage';
+  activePage: any = 'HomePage';
 
   // TODO:
-  goals: Array<GoalPage>;
+  goals: Array<'GoalPage'>;
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
@@ -27,8 +23,8 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Home', component: this.rootPage },
+      { title: 'List', component: 'ListPage' }
     ];
 
     // this.myDataService.getData().then((data) => {
@@ -71,7 +67,7 @@ export class MyApp {
         text: 'Save',
         handler: data => {
           console.log('Saved clicked' + data.name);
-          this.pages.push({ title: data.name, component: GoalPage });
+          this.pages.push({ title: data.name, component: 'GoalPage' });
           // this.myDataService.save(this.pages);
         }
       }]

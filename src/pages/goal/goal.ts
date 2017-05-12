@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, AlertController } from 'ionic-angular';
 import { MyData } from '../../providers/my-data';
-import { SubGoalPage } from '../sub-goal/sub-goal';
 
 /**
  * Generated class for the Goal page.
@@ -31,7 +30,7 @@ export class GoalPage {
   }
 
   addItem() {
-    let addModal = this.modalCtrl.create(SubGoalPage);
+    let addModal = this.modalCtrl.create('SubGoalPage');
 
     addModal.onDidDismiss((item: any) => {
       if (item) {

@@ -6,21 +6,13 @@ import { HttpModule } from '@angular/http';
 import { MyData } from '../providers/my-data';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { GoalPage } from '../pages/goal/goal';
-import { SubGoalPage } from '../pages/sub-goal/sub-goal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
-    MyApp,
-    HomePage,
-    ListPage,
-    GoalPage,
-    SubGoalPage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -29,11 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    HomePage,
-    ListPage,
-    GoalPage,
-    SubGoalPage
+    MyApp
   ],
   providers: [
     HttpModule,
