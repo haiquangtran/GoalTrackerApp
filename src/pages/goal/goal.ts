@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, AlertController, NavParams } from 'ionic-angular';
 import { MyData } from '../../providers/my-data';
+
+import { GoalItem } from '../../app/shared/goal-item';
 
 /**
  * Generated class for the Goal page.
@@ -14,19 +16,15 @@ import { MyData } from '../../providers/my-data';
   templateUrl: 'goal.html',
 })
 export class GoalPage {
-  public name: string;
-  public subGoals: any[] = [];
+  public myGoal: GoalItem;
 
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public myDataService: MyData, public alertCtrl: AlertController) {
-    this.myDataService.getData().then((subGoals: any) => {
-      if (subGoals) {
-        this.subGoals = JSON.parse(subGoals);
-      }
-    });
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public myData: MyData, public alertCtrl: AlertController) {
+    let index = this.navParams.get('index');
+    this.myGoal = this.myData.getGoal(index);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad Goal');
+    console.log('ionViewDidLoad Goal' + this.myGoal);
   }
 
   addItem() {
@@ -42,8 +40,8 @@ export class GoalPage {
   }
 
   saveItem(item: any) {
-    this.subGoals.push(item);
-    this.myDataService.save(this.subGoals);
+    this.myGoal.subGoals.push(item);
+    this.myData.saveGoals();
   }
 
 }

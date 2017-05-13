@@ -7,8 +7,8 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" [class.activeHighlight]="isActivePage(p)" (click)="openPage(p)">
-        {{p.title}}
+      <button menuClose ion-item *ngFor="let goal of myData.getGoals(); let i = index" [class.activeHighlight]="isActivePage(goal)" (click)="openPage(goal, i)">
+        {{goal.title}}
       </button>
     </ion-list>
     <button menuClose ion-item (click)="addPage()">New Goal</button>

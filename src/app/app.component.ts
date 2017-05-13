@@ -3,37 +3,27 @@ import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyData } from '../providers/my-data';
+import { GoalItem } from './shared/goal-item';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-
-  public rootPage: any = 'HomePage';
-  activePage: any = 'HomePage';
-
-  // TODO:
-  goals: Array<'GoalPage'>;
-  pages: Array<{ title: string, component: any }>;
+  public rootPage: any = 'ListPage';
+  public activePage: any = 'ListPage';
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
-    public alertCtrl: AlertController, public myDataService: MyData) {
+    public alertCtrl: AlertController, public myData: MyData) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: 'GoalPage' },
-      { title: 'List', component: 'ListPage' }
-    ];
-
-    // this.myDataService.getData().then((data) => {
-    //   this.pages = JSON.parse(data);
-    // });
-
+    this.myData.loadGoals().then((data: any) => {
+      let savedGoals = <GoalItem[]>JSON.parse(data);
+      this.myData.setGoals(savedGoals);
+    });
   }
 
-  initializeApp() {
+  private initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -42,14 +32,14 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
+  public openPage(page: GoalItem, index: number) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.goal, { index: index });
     this.activePage = page;
   }
 
-  addPage() {
+  public addPage() {
     let newPageAlert = this.alertCtrl.create({
       title: 'New Goal',
       message: 'What is your new goal?',
@@ -59,18 +49,15 @@ export class MyApp {
       }],
       buttons: [{
         text: 'Cancel',
-        handler: data => {
-          console.log('Cancel clicked');
-        }
+        handler: data => { }
       },
       {
         text: 'Save',
         handler: data => {
-          console.log('Saved clicked' + data.name);
-          var newGoalPage = { title: data.name, component: 'GoalPage' };
-          this.pages.push(newGoalPage);
-          this.nav.push(newGoalPage.component);
-          // this.myDataService.save(this.pages);
+          var newGoalPage = new GoalItem(data.name, 'GoalPage');
+          this.myData.addGoal(newGoalPage);
+          this.myData.saveGoals();
+          this.openPage(newGoalPage, this.myData.getGoals().length - 1);
         }
       }]
     });
@@ -78,7 +65,7 @@ export class MyApp {
     newPageAlert.present();
   }
 
-  isActivePage(page): boolean {
+  public isActivePage(page): boolean {
     return page === this.activePage;
   }
 

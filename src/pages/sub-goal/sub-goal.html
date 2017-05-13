@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>subGoal</ion-title>
+    <ion-title>Create a sub goal</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -22,6 +22,16 @@
  
     <ion-item>
       <ion-label floating>Description</ion-label>
+      <ion-input type="text" [(ngModel)]="newItem.description"></ion-input>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label floating>Complete by</ion-label>
+      <ion-input type="text" [(ngModel)]="newItem.description"></ion-input>
+    </ion-item>
+ 
+    <ion-item>
+      <ion-label floating>Reminders</ion-label>
       <ion-input type="text" [(ngModel)]="newItem.description"></ion-input>
     </ion-item>
  

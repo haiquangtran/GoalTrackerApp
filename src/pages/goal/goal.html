@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Goal</ion-title>
+    <ion-title>{{(myGoal && myGoal.title) || "My Goal"}}</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
     </ion-buttons>
@@ -18,10 +18,10 @@
 
 <ion-content padding>
   Insert inspirational quote. How will you achieve this goal?
-  <ion-item>
+  <!--<ion-item>
     <ion-label floating>Name</ion-label>
     <ion-input type="text" [(ngModel)]="name"></ion-input>
-  </ion-item>
+  </ion-item>-->
   <p>
     Notes:
   </p>
@@ -32,9 +32,9 @@
     Sub Goals: "The world is your oyster.""
   </p>
 
-  <ion-list>
+  <ion-list *ngIf="myGoal">
     <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
-    <ion-item *ngFor="let task of subGoals; let i = index">
+    <ion-item *ngFor="let task of myGoal.subGoals; let i = index">
       <ion-label>{{task.title}}</ion-label>
     </ion-item>
   </ion-list>
