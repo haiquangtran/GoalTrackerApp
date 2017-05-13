@@ -11,13 +11,15 @@
     </button>
     <ion-title>{{(myGoal && myGoal.title) || "My Goal"}}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
+      <button ion-button icon-only (click)="deleteGoal()">
+        <ion-icon name="remove-circle"></ion-icon>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  Insert inspirational quote. How will you achieve this goal?
+  Insert inspirational quote "The world is your oyster."". How will you achieve this goal?
   <!--<ion-item>
     <ion-label floating>Name</ion-label>
     <ion-input type="text" [(ngModel)]="name"></ion-input>
@@ -29,7 +31,7 @@
     Habits:
   </p>
   <p>
-    Sub Goals: "The world is your oyster.""
+    Sub Goals:
   </p>
 
   <ion-list *ngIf="myGoal">
@@ -37,6 +39,7 @@
     <ion-item *ngFor="let task of myGoal.subGoals; let i = index">
       <ion-label>{{task.title}}</ion-label>
     </ion-item>
+    <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
   </ion-list>
 
   <p>

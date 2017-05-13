@@ -16,18 +16,20 @@ import { GoalItem } from '../../app/shared/goal-item';
   templateUrl: 'goal.html',
 })
 export class GoalPage {
+  private _goalIndex: number;
   public myGoal: GoalItem;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public myData: MyData, public alertCtrl: AlertController) {
-    let index = this.navParams.get('index');
-    this.myGoal = this.myData.getGoal(index);
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public myData: MyData,
+    public alertCtrl: AlertController) {
+    this._goalIndex = this.navParams.get('index');
+    this.myGoal = this.myData.getGoal(this._goalIndex);
   }
 
-  ionViewDidLoad() {
+  public ionViewDidLoad() {
     console.log('ionViewDidLoad Goal' + this.myGoal);
   }
 
-  addItem() {
+  public addItem() {
     let addModal = this.modalCtrl.create('SubGoalPage');
 
     addModal.onDidDismiss((item: any) => {
@@ -39,9 +41,33 @@ export class GoalPage {
     addModal.present();
   }
 
-  saveItem(item: any) {
+  public saveItem(item: any) {
     this.myGoal.subGoals.push(item);
     this.myData.saveGoals();
+  }
+
+  public deleteGoal() {
+    let confirm = this.alertCtrl.create({
+      title: 'Delete item',
+      message: 'Do you want to delete this item?',
+      buttons: [
+        {
+          text: 'No',
+          handler: () => {
+          }
+        },
+        {
+          text: 'Yes',
+          handler: () => {
+            this.myData.removeGoal(this._goalIndex);
+            this.myData.saveGoals();
+            this.navCtrl.setRoot('ListPage');
+          }
+        }
+      ]
+    });
+
+    confirm.present();
   }
 
 }
