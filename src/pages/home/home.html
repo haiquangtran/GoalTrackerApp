@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="primary">
+  <ion-navbar color="dark">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -10,7 +10,7 @@
 <ion-content padding>
   <ion-card *ngFor="let goal of myData.getGoals(); let i = index">
     <ion-card-content>
-      <ion-card-title color="secondary-light">
+      <ion-card-title color="secondary-dark">
         {{goal.title}}
       </ion-card-title>
       <p class="italics">
