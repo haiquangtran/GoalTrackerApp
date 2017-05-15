@@ -3,16 +3,40 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>My Dashboard</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Just do it</h3>
+  <ion-card *ngFor="let goal of myData.getGoals(); let i = index">
+    <ion-card-content>
+      <ion-card-title color="secondary-light">
+        {{goal.title}}
+      </ion-card-title>
+      <p class="italics">
+        {{goal.descriptionPlan}}
+      </p>
+      <ion-list>
+        <ion-item *ngFor="let subGoal of goal.subGoals; let j = index">
+          <ion-label>{{subGoal.title}}</ion-label>
+          <ion-checkbox color="dark"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-fab right bottom edge>
+    <button (click)="addPage()" ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="light">
+    <!--<ion-buttons>
+      <button ion-button icon-right color="royal">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>-->
+    <ion-title>"Insert quote or something"</ion-title>
+  </ion-toolbar>
+</ion-footer>

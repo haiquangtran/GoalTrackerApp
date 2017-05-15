@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { MyData } from '../../providers/my-data';
+import { GoalItem } from '../../app/shared/goal-item';
 
 @IonicPage()
 @Component({
@@ -7,9 +9,45 @@ import { IonicPage, NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public rootPage: any = 'HomePage';
 
-  constructor(public navCtrl: NavController) {
+  constructor(public myData: MyData, public alertCtrl: AlertController, public navCtrl: NavController) {
+    this.myData.loadGoals().then((data: any) => {
+      let savedGoals = <GoalItem[]>JSON.parse(data);
+      this.myData.setGoals(savedGoals);
+    });
+  }
 
+  public addPage() {
+    let newPageAlert = this.alertCtrl.create({
+      title: 'New Goal',
+      message: 'What is your new goal?',
+      inputs: [{
+        name: 'name',
+        placeholder: 'I want to...'
+      }],
+      buttons: [{
+        text: 'Cancel',
+        handler: data => { }
+      },
+      {
+        text: 'Save',
+        handler: data => {
+          var newGoalPage = new GoalItem(data.name, 'GoalPage');
+          this.myData.addGoal(newGoalPage);
+          this.myData.saveGoals();
+          this.openPage(newGoalPage, this.myData.getGoals().length - 1);
+        }
+      }]
+    });
+
+    newPageAlert.present();
+  }
+
+  public openPage(page: GoalItem, index: number) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    this.navCtrl.setRoot(page.goal, { index: index });
   }
 
 }

@@ -61,7 +61,7 @@ export class GoalPage {
           handler: () => {
             this.myData.removeGoal(this._goalIndex);
             this.myData.saveGoals();
-            this.navCtrl.setRoot('ListPage');
+            this.navCtrl.setRoot('HomePage');
           }
         }
       ]
