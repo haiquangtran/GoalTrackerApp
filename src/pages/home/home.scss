@@ -8,13 +8,11 @@ page-home {
         white-space: normal;
         color: map-get($colors, white) !important;
         background: map-get($colors, dark);
-        // font-weight: bold;
-        // Refactor
-        padding: 5px !important;
+        font-weight: bold;
     }
 
     .home-content {
-        background-color: #ECEFF1;
+        background-color: #ced6e3;
     }
 
     .goal-grid {
