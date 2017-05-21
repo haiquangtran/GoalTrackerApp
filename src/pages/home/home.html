@@ -3,27 +3,32 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>My Dashboard</ion-title>
+    <ion-title>My Goal Book</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-card *ngFor="let goal of myData.getGoals(); let i = index">
-    <ion-card-content>
-      <ion-card-title color="secondary-dark">
-        {{goal.title}}
-      </ion-card-title>
-      <p class="italics">
-        {{goal.descriptionPlan}}
-      </p>
-      <ion-list>
-        <ion-item *ngFor="let subGoal of goal.subGoals; let j = index">
-          <ion-label>{{subGoal.title}}</ion-label>
-          <ion-checkbox color="dark"></ion-checkbox>
-        </ion-item>
-      </ion-list>
-    </ion-card-content>
-  </ion-card>
+<ion-content>
+
+  <div class="goal-grid">
+    <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
+      <ion-card>
+        <ion-card-header color="secondary-dark">
+          {{goal.title | uppercase }}
+        </ion-card-header>
+        <ion-card-content>
+          <p class="italics">
+            {{goal.descriptionPlan || 'No description'}}
+          </p>
+          <ion-list>
+            <ion-item *ngFor="let subGoal of goal.subGoals; let j = index">
+              <ion-label>{{subGoal.title}}</ion-label>
+              <ion-checkbox color="dark"></ion-checkbox>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 
   <ion-fab right bottom edge>
     <button (click)="addPage()" ion-fab color="secondary"><ion-icon name="add"></ion-icon></button>

@@ -19,6 +19,12 @@
     background: map-get($colors, light);
 }
 
+// Global Formatting Styles
+
 .italics {
     font-style: italic;
+}
+
+.no-padding {
+    padding: 0 !important;
 }

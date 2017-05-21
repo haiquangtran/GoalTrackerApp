@@ -1,3 +1,18 @@
-page-home {
+@import "ionic.globals";
 
+page-home {
+    .goal-grid {
+        &:first-child {
+            margin-top: 10px;
+        }
+
+        column-count: 2;
+        column-gap: 0px;
+        // column-rule: 2px outset map-get($colors, light);
+    }
+
+    .goal-grid-item {
+        display: inline-block;
+        width: 100%;
+    }
 }
