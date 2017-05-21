@@ -27,4 +27,32 @@ page-home {
         width: 100%;
     }
 
+    .footer-tabs {
+        text-align: center;
+        color: white;
+        p, h2, .col {
+            margin-top: 0px !important;
+            margin-bottom: 0px !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
+        p {
+            color: grey;
+        }        
+
+        h2 {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        
+        .divider{
+            position: absolute;
+            left: 50%;
+            top: 25%;
+            bottom: 25%;
+            border-left: 1px solid grey;
+            opacity: 0.6;
+        }
+    }
+
 }

@@ -38,12 +38,23 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar color="dark">
+  <ion-toolbar class="footer-tabs" color="dark">
+    <div class="row">
+      <div class="col">
+        <h2>{{myData.getGoals().length}}</h2>
+        <p>Active goals</p>
+      </div>
+      <div class="divider"></div>
+      <div class="col">
+        <h2>0</h2>
+        <p>Completed goals</p>
+      </div>
+    </div>
     <!--<ion-buttons>
-      <button ion-button icon-right color="royal">
+      <button ion-button icon-left color="royal">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>-->
-    <ion-title>"Insert quote or something"</ion-title>
+    <!--<ion-title>You currently have {{myData.getGoals().length}} active goals</ion-title>-->
   </ion-toolbar>
 </ion-footer>
