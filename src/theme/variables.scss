@@ -12,8 +12,10 @@ $font-path: "../assets/fonts";
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
 
-$card-md-margin-top:                  5px !default;
-$card-md-margin-bottom:               5px !default;
+$card-md-margin-top: 0px !default;
+$card-md-margin-bottom: 0px !default;
+$card-md-margin-left: 0px !default;
+$card-md-margin-right: 0px !default;
 
 // Named Color Variables
 // --------------------------------------------------
@@ -25,17 +27,14 @@ $card-md-margin-bottom:               5px !default;
 
 $colors: (
   primary:    #616161,
-  // primary:    #165A00,
   secondary:  #ff1744,
   secondary-dark: #c4001d,
   secondary-light: #ff616f,
   danger:     #f53d3d,
   light:      #8e8e8e,
-  dark:       #373737
-  // light:      #D2E4CA,
-  // dark:       #0D3700
+  dark:       #373737,
+  white:    white
 );
-
 
 // App iOS Variables
 // --------------------------------------------------

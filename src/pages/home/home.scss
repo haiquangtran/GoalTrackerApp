@@ -1,18 +1,32 @@
 @import "ionic.globals";
 
 page-home {
-    .goal-grid {
-        &:first-child {
-            margin-top: 10px;
-        }
+    // Variables
+    $card-padding: 5px;
 
+    ion-card-header {
+        white-space: normal;
+        color: map-get($colors, white) !important;
+        background: map-get($colors, dark);
+        // font-weight: bold;
+        // Refactor
+        padding: 5px !important;
+    }
+
+    .home-content {
+        background-color: #ECEFF1;
+    }
+
+    .goal-grid {
+        padding: $card-padding;
         column-count: 2;
-        column-gap: 0px;
-        // column-rule: 2px outset map-get($colors, light);
+        column-gap: 0;
     }
 
     .goal-grid-item {
+        padding: $card-padding;
         display: inline-block;
         width: 100%;
     }
+
 }
