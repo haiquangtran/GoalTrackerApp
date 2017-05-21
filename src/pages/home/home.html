@@ -11,11 +11,14 @@
 
   <div class="goal-grid">
     <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
-      <ion-card>
-        <ion-card-header color="secondary-dark">
+      <ion-card (click)="openPage(goal, i)">
+        <ion-card-header color="secondary-dark" *ngIf="i % 2 === 0">
           {{goal.title | uppercase }}
         </ion-card-header>
         <ion-card-content>
+          <ion-card-title color="secondary-dark" *ngIf="i % 2 !== 0">
+            {{goal.title | uppercase }}
+          </ion-card-title>
           <p class="italics">
             {{goal.descriptionPlan || 'No description'}}
           </p>
