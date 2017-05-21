@@ -25,6 +25,9 @@ export class HomePage {
       inputs: [{
         name: 'name',
         placeholder: 'I want to...'
+      }, {
+        name: 'plan',
+        placeholder: 'How will you accomplish this?'
       }],
       buttons: [{
         text: 'Cancel',
@@ -33,7 +36,7 @@ export class HomePage {
       {
         text: 'Save',
         handler: data => {
-          var newGoalPage = new GoalItem(data.name, 'GoalPage');
+          var newGoalPage = new GoalItem(data.name, 'GoalPage', data.plan);
           this.myData.addGoal(newGoalPage);
           this.myData.saveGoals();
           this.openPage(newGoalPage, this.myData.getGoals().length - 1);
