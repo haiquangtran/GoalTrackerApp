@@ -11,38 +11,111 @@
     </button>
     <ion-title>{{(myGoal && myGoal.title) || "My Goal"}}</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only (click)="deleteGoal()">
-        <ion-icon name="remove-circle"></ion-icon>
+      <button ion-button icon-only>
+        <ion-icon name="create"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  Insert inspirational quote "The world is your oyster."". How will you achieve this goal?
-  <!--<ion-item>
-    <ion-label floating>Name</ion-label>
-    <ion-input type="text" [(ngModel)]="name"></ion-input>
-  </ion-item>-->
-  <p>
-    Notes:
-  </p>
-  <p>
-    Habits:
-  </p>
-  <p>
-    Sub Goals:
-  </p>
+  <ion-fab right top edge>
 
-  <ion-list *ngIf="myGoal">
-    <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
-    <ion-item *ngFor="let task of myGoal.subGoals; let i = index">
-      <ion-label>{{task.title}}</ion-label>
-    </ion-item>
-    <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
-  </ion-list>
+  </ion-fab>
 
-  <p>
-    Time left:
-  </p>
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title color="secondary-dark">
+        <h1>{{myGoal && myGoal.title}}</h1>
+      </ion-card-title>
+
+      <span>Created on {{myGoal && myGoal.createdDate}}</span>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        My Plan
+      </ion-card-title>
+      <p>
+        {{myGoal && myGoal.descriptionPlan}}
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        Progress
+      </ion-card-title>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        Milestones
+      </ion-card-title>
+      <ion-list *ngIf="myGoal">
+        <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
+        <ion-item *ngFor="let task of myGoal.subGoals; let i = index">
+          <ion-label>{{task.title}}</ion-label>
+        </ion-item>
+        <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>
+        Accomplishments
+      </ion-card-title>
+      <p>
+        Notes:
+      </p>
+      <p>
+        Habits:
+      </p>
+      <p>
+        Sub Goals:
+      </p>
+      <p>
+        Time left:
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab right bottom edge>
+    <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="dark">
+    <ion-buttons>
+      <button ion-button icon-only icon-left color="royal">
+        <ion-icon name="alarm"></ion-icon>
+      </button>
+      <button ion-button icon-only icon-left color="royal">
+        <ion-icon name="archive"></ion-icon>
+      </button>
+      <button ion-button icon-only icon-left color="royal">
+        <ion-icon name="bookmark"></ion-icon>
+      </button>
+      <button ion-button icon-only icon-left color="royal">
+        <ion-icon name="color-palette"></ion-icon>
+      </button>
+      <button ion-button icon-only icon-left color="royal">
+        <ion-icon name="filing"></ion-icon>
+      </button>
+      <button ion-button icon-only icon-left color="royal">
+        <ion-icon name="settings"></ion-icon>
+      </button>
+      <button (click)="deleteGoal()" ion-button icon-left color="royal">
+        <ion-icon name="trash"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
