@@ -9,27 +9,26 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{(myGoal && myGoal.title) || "My Goal"}}</ion-title>
-    <ion-buttons end>
+    <ion-title color="secondary-dark">{{(myGoal && myGoal.title) || "My Goal"}}</ion-title>
+    <!--<ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="create"></ion-icon>
       </button>
-    </ion-buttons>
+    </ion-buttons>-->
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-fab right top edge>
-
-  </ion-fab>
-
+<ion-content [style.background-color]="myGoal && myGoal.color" padding>
   <ion-card>
     <ion-card-content>
       <ion-card-title color="secondary-dark">
-        <h1>{{myGoal && myGoal.title}}</h1>
+        {{myGoal && myGoal.title}}
       </ion-card-title>
-
-      <span>Created on {{myGoal && myGoal.createdDate}}</span>
+      <div>
+        <ion-badge color="secondary">Fitness</ion-badge>
+        <ion-badge color="secondary">Long term</ion-badge>
+        <ion-badge color="secondary">Health</ion-badge>
+      </div>
     </ion-card-content>
   </ion-card>
 
@@ -87,14 +86,15 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-fab right bottom edge>
+  <ion-fab right top edge>
     <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
   </ion-fab>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color="dark">
-    <ion-buttons>
+    <ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>
+    <ion-buttons start>
       <button ion-button icon-only icon-left color="royal">
         <ion-icon name="alarm"></ion-icon>
       </button>
@@ -104,7 +104,7 @@
       <button ion-button icon-only icon-left color="royal">
         <ion-icon name="bookmark"></ion-icon>
       </button>
-      <button ion-button icon-only icon-left color="royal">
+      <button (click)="presentPopover()" ion-button icon-only icon-left color="royal">
         <ion-icon name="color-palette"></ion-icon>
       </button>
       <button ion-button icon-only icon-left color="royal">

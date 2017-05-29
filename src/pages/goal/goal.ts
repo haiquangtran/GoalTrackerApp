@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, AlertController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, PopoverController, AlertController, NavParams } from 'ionic-angular';
 import { MyData } from '../../providers/my-data';
 
 import { GoalItem } from '../../app/shared/goal-item';
@@ -20,7 +20,7 @@ export class GoalPage {
   public myGoal: GoalItem;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public myData: MyData,
-    public alertCtrl: AlertController) {
+    public alertCtrl: AlertController, public popoverCtrl: PopoverController) {
     this._goalIndex = this.navParams.get('index');
     this.myGoal = this.myData.getGoal(this._goalIndex);
   }
@@ -68,6 +68,19 @@ export class GoalPage {
     });
 
     confirm.present();
+  }
+
+
+  public presentPopover() {
+    let popover = this.popoverCtrl.create('ChangeColorPopoverPage');
+    var self = this;
+    popover.onDidDismiss((color: string) => {
+      if (this.myGoal) {
+        this.myGoal.color = color;
+      }
+    });
+
+    popover.present();
   }
 
 }

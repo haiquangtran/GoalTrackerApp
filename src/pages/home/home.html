@@ -10,7 +10,7 @@
 <ion-content class="home-content">
   <div class="goal-grid">
     <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
-      <ion-card (click)="openPage(goal, i)">
+      <ion-card [style.background-color]="goal.color" (click)="openPage(goal, i)">
         <!--<ion-card-header color="white" *ngIf="i % 3 === 0">
           {{goal.title}}
         </ion-card-header>-->
