@@ -72,8 +72,8 @@ export class GoalPage {
 
 
   public presentPopover() {
-    let popover = this.popoverCtrl.create('ChangeColorPopoverPage');
-    var self = this;
+    let popover = this.popoverCtrl.create('ChangeColorPopoverPage', { colour: this.myGoal.color || ''});
+
     popover.onDidDismiss((color: string) => {
       if (this.myGoal) {
         this.myGoal.color = color;
