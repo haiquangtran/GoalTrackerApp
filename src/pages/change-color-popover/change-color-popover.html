@@ -7,17 +7,8 @@
 <ion-list>
   <ion-list-header>Colours</ion-list-header>
   <ion-row class="row-dots">
-    <ion-col>
-      <button ion-button="dot" (click)="changeBackground('white')" class="dot-white" [class.selected]="background == 'white'"></button>
-    </ion-col>
-    <ion-col>
-      <button ion-button="dot" (click)="changeBackground('tan')" class="dot-tan" [class.selected]="background == 'tan'"></button>
-    </ion-col>
-    <ion-col>
-      <button ion-button="dot" (click)="changeBackground('grey')" class="dot-grey" [class.selected]="background == 'grey'"></button>
-    </ion-col>
-    <ion-col>
-      <button ion-button="dot" (click)="changeBackground('black')" class="dot-black" [class.selected]="background == 'black'"></button>
+    <ion-col *ngFor="let colour of allColours; let i = index" col-3>
+      <button ion-button="dot" (click)="selectColour(colour)" [style.background]="colour" [class.selected]="isSelected(colour)"></button>
     </ion-col>
   </ion-row>
 </ion-list>

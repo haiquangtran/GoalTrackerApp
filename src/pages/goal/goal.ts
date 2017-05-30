@@ -77,6 +77,7 @@ export class GoalPage {
     popover.onDidDismiss((color: string) => {
       if (this.myGoal) {
         this.myGoal.color = color;
+        this.myData.saveGoals();
       }
     });
 

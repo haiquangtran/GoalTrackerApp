@@ -4,7 +4,7 @@ export class GoalItem {
     public goal: any;
     public subGoals: any[] = [];
     public createdDate: Date;
-    public color: string = "";
+    public color: string = "#fff";
 
     constructor(title?: string, goal?: any, descriptionPlan?: string) {
         this.title = title;
@@ -14,6 +14,6 @@ export class GoalItem {
     }
 
     public setColor(color: string) {
-        this.color = color;
+        this.color = color || "#fff";
     }
 }

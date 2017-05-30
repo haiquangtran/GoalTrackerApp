@@ -9,27 +9,12 @@ page-change-color-popover {
       border-radius: 50%;
       margin: 10px auto;
       position: relative;
+      border: 1px solid #E0E0E0;
     }
-  }
 
-  .dot-white {
-    background-color: rgb(255,255,255);
-  }
-
-  .dot-tan {
-    background-color: rgb(249,241,228);
-  }
-
-  .dot-grey {
-    background-color: rgb(76,75,80);
-  }
-
-  .dot-black {
-    background-color: rgb(0,0,0);
-  }
-
-  .dot.selected {
-    border: 2px solid #327eff;
+    .dot.selected {
+      border: 2px solid #212121;
+    }
   }
 
 }
