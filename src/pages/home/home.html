@@ -10,7 +10,7 @@
 <ion-content class="home-content">
   <div class="goal-grid">
     <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
-      <ion-card [style.background-color]="goal.color" (click)="openPage(goal, i)">
+      <ion-card [style.background-color]="goal.colour" (click)="openPage(goal, i)">
         <!--<ion-card-header color="white" *ngIf="i % 3 === 0">
           {{goal.title}}
         </ion-card-header>-->
@@ -22,11 +22,16 @@
             {{goal.descriptionPlan || 'No description'}}
           </p>
           <ion-list>
-            <ion-item *ngFor="let subGoal of goal.subGoals; let j = index">
+            <ion-item [style.background-color]="goal.colour" *ngFor="let subGoal of goal.subGoals; let j = index">
               <ion-label>{{subGoal.title}}</ion-label>
               <ion-checkbox color="dark"></ion-checkbox>
             </ion-item>
           </ion-list>
+          <div>
+            <ion-badge color="dark">Fitness</ion-badge>
+            <ion-badge color="dark">Test</ion-badge>
+            <ion-badge color="dark">Health</ion-badge>
+          </div>
         </ion-card-content>
       </ion-card>
     </div>
