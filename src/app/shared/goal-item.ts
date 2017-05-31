@@ -5,6 +5,7 @@ export class GoalItem {
     public subGoals: any[] = [];
     public createdDate: Date;
     public colour: string = "#fff";
+    public categoryLabels: string[] = [];
 
     constructor(title?: string, goal?: any, descriptionPlan?: string) {
         this.title = title;

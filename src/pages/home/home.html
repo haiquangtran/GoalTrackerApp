@@ -1,8 +1,8 @@
 <ion-header>
   <ion-navbar color="primary">
-    <button ion-button menuToggle>
+    <!--<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
-    </button>
+    </button>-->
     <ion-title>My Goal Book</ion-title>
   </ion-navbar>
 </ion-header>
@@ -28,9 +28,7 @@
             </ion-item>
           </ion-list>
           <div>
-            <ion-badge color="dark">Fitness</ion-badge>
-            <ion-badge color="dark">Test</ion-badge>
-            <ion-badge color="dark">Health</ion-badge>
+            <ion-badge *ngFor="let category of goal.categoryLabels" color="dark">{{category}}</ion-badge>
           </div>
         </ion-card-content>
       </ion-card>

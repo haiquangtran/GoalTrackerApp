@@ -4,16 +4,16 @@ page-change-color-popover {
     text-align: center;
 
     .dot {
-      height: 20px;
-      width: 20px;
+      height: 30px;
+      width: 30px;
       border-radius: 50%;
-      margin: 10px auto;
+      margin: 5px auto;
       position: relative;
       border: 1px solid #E0E0E0;
     }
 
     .dot.selected {
-      border: 2px solid #212121;
+      border: 2px solid darkblue;
     }
   }
 

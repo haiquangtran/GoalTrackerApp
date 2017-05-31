@@ -24,10 +24,8 @@
       <ion-card-title color="secondary-dark">
         {{myGoal && myGoal.title}}
       </ion-card-title>
-      <div>
-        <ion-badge color="secondary">Fitness</ion-badge>
-        <ion-badge color="secondary">Long term</ion-badge>
-        <ion-badge color="secondary">Health</ion-badge>
+      <div *ngIf="myGoal">
+        <ion-badge *ngFor="let category of myGoal.categoryLabels" color="dark">{{category}}</ion-badge>
       </div>
     </ion-card-content>
   </ion-card>
@@ -93,7 +91,7 @@
 
 <ion-footer>
   <ion-toolbar color="dark">
-    <ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>
+    <!--<ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>-->
     <ion-buttons start>
       <button ion-button icon-only icon-left color="royal">
         <ion-icon name="alarm"></ion-icon>

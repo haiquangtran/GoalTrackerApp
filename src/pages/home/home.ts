@@ -28,6 +28,9 @@ export class HomePage {
       }, {
         name: 'plan',
         placeholder: 'How will you accomplish this?'
+      }, {
+        name: 'tags',
+        placeholder: 'Enter category name...'
       }],
       buttons: [{
         text: 'Cancel',
@@ -37,6 +40,7 @@ export class HomePage {
         text: 'Save',
         handler: data => {
           var newGoalPage = new GoalItem(data.name, 'GoalPage', data.plan);
+          newGoalPage.categoryLabels.push(data.tags);
           this.myData.addGoal(newGoalPage);
           this.myData.saveGoals();
           this.openPage(newGoalPage, this.myData.getGoals().length - 1);
