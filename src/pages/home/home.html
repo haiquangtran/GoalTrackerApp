@@ -15,8 +15,8 @@
           {{goal.title}}
         </ion-card-header>-->
         <ion-card-content>
-          <ion-card-title color="dark">
-            {{goal.title}}
+          <ion-card-title #container color="dark">
+            <h1 [fittext]="true" [activateOnResize]="true" [container]="container">{{goal.title}} </h1>
           </ion-card-title>
           <p class="italics">
             {{goal.descriptionPlan || 'No description'}}
