@@ -9,12 +9,14 @@ import { GoalItem } from '../../app/shared/goal-item';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public isDataLoaded: boolean = false;
   public rootPage: any = 'HomePage';
 
   constructor(public myData: MyData, public alertCtrl: AlertController, public navCtrl: NavController) {
     this.myData.loadGoals().then((data: any) => {
       let savedGoals = <GoalItem[]>JSON.parse(data);
       this.myData.setGoals(savedGoals);
+      this.isDataLoaded = true;
     });
   }
 
