@@ -58,4 +58,21 @@ export class HomePage {
     this.navCtrl.push(page.goal, { index: index });
   }
 
+  public calculateTitleFontSize(goal: GoalItem): string {
+    var titleLength = goal.title.length || 0;
+    if (titleLength > 0 && titleLength < 6) {
+      return '4rem';
+    }
+    else if (titleLength > 6 && titleLength < 10) {
+      return '3rem';
+    }
+    else if (titleLength > 10 && titleLength < 20) {
+      return '2rem';
+    }
+    else if (titleLength > 20) {
+      return '1rem';
+    }
+    return '0.5rem';
+  }
+
 }

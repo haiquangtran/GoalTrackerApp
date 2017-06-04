@@ -4,10 +4,6 @@ page-home {
     // Variables
     $card-padding: 5px;
 
-    ion-card-title {
-        height: 70px;
-    }
-    
     ion-card-header {
         white-space: normal;
         color: map-get($colors, white) !important;

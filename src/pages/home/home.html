@@ -9,14 +9,19 @@
 
 <ion-content class="home-content">
   <div class="goal-grid">
+    <div *ngIf="myData.getGoals().length == 0">
+      <h2>
+        You have no active goals.
+      </h2>
+    </div>
     <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
       <ion-card [style.background-color]="goal.colour" (click)="openPage(goal, i)">
         <!--<ion-card-header color="white" *ngIf="i % 3 === 0">
           {{goal.title}}
         </ion-card-header>-->
         <ion-card-content>
-          <ion-card-title #container color="dark">
-            <h1 [fittext]="true" [activateOnResize]="true" [container]="container">{{goal.title}} </h1>
+          <ion-card-title [style.font-size]="calculateTitleFontSize(goal)" color="dark">
+            {{goal.title}}
           </ion-card-title>
           <p class="italics">
             {{goal.descriptionPlan || 'No description'}}
