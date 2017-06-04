@@ -60,19 +60,19 @@ export class HomePage {
 
   public calculateTitleFontSize(goal: GoalItem): string {
     var titleLength = goal.title.length || 0;
-    if (titleLength > 0 && titleLength < 6) {
+    if (titleLength > 0 && titleLength < 10) {
+      return '5rem';
+    }
+    else if (titleLength >= 10 && titleLength < 15) {
       return '4rem';
     }
-    else if (titleLength > 6 && titleLength < 10) {
+    else if (titleLength >= 15 && titleLength < 20) {
       return '3rem';
     }
-    else if (titleLength > 10 && titleLength < 20) {
+    else if (titleLength >= 20) {
       return '2rem';
     }
-    else if (titleLength > 20) {
-      return '1rem';
-    }
-    return '0.5rem';
+    return '1rem';
   }
 
 }

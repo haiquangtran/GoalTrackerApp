@@ -15,6 +15,15 @@ page-home {
         background-color: #ced6e3;
     }
 
+    .goal-grid-empty {
+        height: 100%;
+        justify-content: center;
+
+        h1 {
+            color: map-get($colors, light);
+        }
+    }
+
     .goal-grid {
         padding: $card-padding;
         column-count: 2;
