@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title color="secondary-dark">{{(myGoal && myGoal.title) || "My Goal"}}</ion-title>
+    <ion-title color="secondary-dark">{{(myGoal?.title) || "My Goal"}}</ion-title>
     <!--<ion-buttons end>
       <button ion-button icon-only>
         <ion-icon name="create"></ion-icon>
@@ -25,7 +25,7 @@
         My Goal
       </h1>
       <p>
-        {{myGoal && myGoal.title}}
+        {{myGoal?.title}}
       </p>
       <div *ngIf="myGoal">
         <ion-badge *ngFor="let category of myGoal.categoryLabels" color="dark">{{category}}</ion-badge>
@@ -37,7 +37,7 @@
         My Plan
       </h1>
       <p>
-        {{myGoal && myGoal.descriptionPlan}}
+        {{myGoal?.descriptionPlan}}
       </p>
     </div>
 
@@ -93,6 +93,10 @@
 
 <ion-footer>
   <ion-toolbar color="dark">
+    <div>
+      <h5>Created {{myGoal?.createdDate || '' | date: 'short'}}</h5>
+    </div>
+    
     <!--<ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>-->
     <ion-buttons start>
       <button ion-button icon-only icon-left color="royal">
@@ -108,7 +112,7 @@
         <ion-icon name="color-palette"></ion-icon>
       </button>
       <button (click)="goToCategoryPage()" ion-button icon-only icon-left color="royal">
-        <ion-icon name="filing"></ion-icon>
+        <ion-icon name="pricetags"></ion-icon>
       </button>
       <!--<button ion-button icon-only icon-left color="royal">
         <ion-icon name="settings"></ion-icon>

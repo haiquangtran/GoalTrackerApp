@@ -9,6 +9,7 @@ import { GoalItem } from '../../app/shared/goal-item';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public goalGridColumnCount: number = 1;
   public isDataLoaded: boolean = false;
   public rootPage: any = 'HomePage';
 
@@ -31,6 +32,13 @@ export class HomePage {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.navCtrl.push('GoalPage', { index: index });
+  }
+  
+  public changeGridColumnCount() {
+    if (this.goalGridColumnCount >= 2) {
+      this.goalGridColumnCount = 0;
+    }
+    this.goalGridColumnCount++;
   }
 
   // TODO: move to directive

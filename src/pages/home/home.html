@@ -4,6 +4,12 @@
       <ion-icon name="menu"></ion-icon>
     </button>-->
     <ion-title>My Goal Book</ion-title>
+
+    <ion-buttons end>
+      <button (click)="changeGridColumnCount()" ion-button icon-only>
+      <ion-icon name="grid"></ion-icon>
+    </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -18,7 +24,7 @@
     </ion-row>
   </ion-grid>
 
-  <div class="goal-grid" *ngIf="myData && myData.getGoals().length > 0">
+  <div class="goal-grid" [style.column-count]="goalGridColumnCount" *ngIf="myData && myData.getGoals().length > 0">
     <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
       <ion-card [style.background-color]="goal.colour" (click)="openPage(i)">
         <ion-card-content>
