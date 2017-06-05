@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, ModalController, PopoverController, AlertController, NavParams } from 'ionic-angular';
-import { MyData } from '../../providers/my-data';
 
+import { MyData } from '../../providers/my-data';
 import { GoalItem } from '../../app/shared/goal-item';
 
 /**
@@ -71,17 +71,14 @@ export class GoalPage {
   }
 
 
-  public presentPopover() {
+  public showChangeColourPopup() {
     let popover = this.popoverCtrl.create('ChangeColorPopoverPage', { index: this._goalIndex });
-
-    // popover.onDidDismiss((colour: string) => {
-    //   if (this.myGoal) {
-    //     this.myGoal.colour = colour;
-    //     this.myData.saveGoals();
-    //   }
-    // });
-
     popover.present();
+  }
+
+  public goToCategoryPage() {
+    let categoryPage = this.modalCtrl.create('CategoryPage', { index: this._goalIndex });
+    categoryPage.present();
   }
 
 }

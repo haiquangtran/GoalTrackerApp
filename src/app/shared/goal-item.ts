@@ -12,4 +12,5 @@ export class GoalItem {
         this.descriptionPlan = descriptionPlan;
         this.createdDate = new Date();
     }
+
 }

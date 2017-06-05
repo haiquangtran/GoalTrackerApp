@@ -13,11 +13,14 @@ import { GoalItem } from '../app/shared/goal-item';
 */
 @Injectable()
 export class MyData {
+  private _categories: string[] = [];
   private _goals: GoalItem[] = [];
 
   constructor(public http: HttpModule, public storage: Storage) {
     console.log('Hello MyData Provider');
   }
+
+  // Goals
 
   public addGoal(goal: GoalItem) {
     this._goals.push(goal);
@@ -49,6 +52,33 @@ export class MyData {
   public saveGoals() {
     let myGoals = JSON.stringify(this._goals);
     this.storage.set('goals', myGoals);
+  }
+
+  // Categories
+
+  public addCatgeory(category: string) {
+    this._categories.push(category);
+  }
+
+  public removeCategory(index: number) {
+    this._categories.splice(index, 1);
+  }
+
+  public getCategories(): string[] {
+    return this._categories;
+  }
+
+  public setCategories(categories: string[]) {
+    this._categories = categories || ['Health', 'Career', 'Relationships', 'Business', 'Wealth'];
+  }
+
+  public loadCategories(): Promise<any> {
+    return this.storage.get('categories');
+  }
+
+  public saveCategories() {
+    let myCategories = JSON.stringify(this._categories);
+    this.storage.set('categories', myCategories);
   }
 
 }
