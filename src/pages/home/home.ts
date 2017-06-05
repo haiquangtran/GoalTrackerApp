@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { MyData } from '../../providers/my-data';
 import { GoalItem } from '../../app/shared/goal-item';
 
@@ -12,7 +12,7 @@ export class HomePage {
   public isDataLoaded: boolean = false;
   public rootPage: any = 'HomePage';
 
-  constructor(public myData: MyData, public alertCtrl: AlertController, public navCtrl: NavController) {
+  constructor(public myData: MyData, public modalCtrl: ModalController, public navCtrl: NavController) {
     this.myData.loadGoals().then((data: any) => {
       let savedGoals = <GoalItem[]>JSON.parse(data);
       this.myData.setGoals(savedGoals);
@@ -21,45 +21,27 @@ export class HomePage {
   }
 
   public addPage() {
-    let newPageAlert = this.alertCtrl.create({
-      title: 'New Goal',
-      message: 'What is your new goal?',
-      inputs: [{
-        name: 'name',
-        placeholder: 'I want to...'
-      }, {
-        name: 'plan',
-        placeholder: 'How will you accomplish this?'
-      }, {
-        name: 'tags',
-        placeholder: 'Enter category name...'
-      }],
-      buttons: [{
-        text: 'Cancel',
-        handler: data => { }
-      },
-      {
-        text: 'Save',
-        handler: data => {
-          var newGoalPage = new GoalItem(data.name, 'GoalPage', data.plan);
-          newGoalPage.categoryLabels.push(data.tags);
-          this.myData.addGoal(newGoalPage);
-          this.myData.saveGoals();
-          this.openPage(newGoalPage, this.myData.getGoals().length - 1);
-        }
-      }]
-    });
+    let addGoal = this.modalCtrl.create('AddGoalPage');
 
-    newPageAlert.present();
+    addGoal.onDidDismiss((newGoal: GoalItem) => {
+      if (newGoal) {
+        this.myData.addGoal(newGoal);
+        this.myData.saveGoals();
+        this.openPage(this.myData.getGoals().length - 1);
+      }
+    })
+
+    addGoal.present();
   }
 
   // Needs index parameter for deleting the page in future
-  public openPage(page: GoalItem, index: number) {
+  public openPage(index: number) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.navCtrl.push(page.goal, { index: index });
+    this.navCtrl.push('GoalPage', { index: index });
   }
 
+  // TODO: move to directive
   public calculateTitleFontSize(goal: GoalItem): string {
     var titleLength = goal.title.length || 0;
     if (titleLength > 0 && titleLength < 10) {

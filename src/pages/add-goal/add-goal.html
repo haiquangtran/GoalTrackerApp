@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Create a new goal</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()"><ion-icon name="close"></ion-icon></button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form *ngIf="newGoal" #form="ngForm" (ngSubmit)="createNewGoal()" novalidate>
+    <ion-item>
+      <ion-label floating>Goal: I want to...</ion-label>
+      <ion-input type="text" required [(ngModel)]="newGoal.title" name="title" ngControl="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Plan: How will you accomplish this?</ion-label>
+      <ion-textarea [(ngModel)]="newGoal.description" name="description" ngControl="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Category</ion-label>
+      <ion-input [(ngModel)]="category" name="category" ngControl="category"></ion-input>
+    </ion-item>
+
+    <ion-footer>
+      <ion-toolbar>
+        <button full ion-button type="submit" color="secondary" block>Create Goal</button>
+      </ion-toolbar>
+    </ion-footer>
+  </form>
+</ion-content>
