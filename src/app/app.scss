@@ -15,8 +15,13 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.activeHighlight {
-    background: map-get($colors, light);
+@font-face {
+    font-family: Rubik;
+    src: url('../assets/fonts/rubik.woff2');
+}
+
+* {
+    font-family: Rubik;
 }
 
 // Global Formatting Styles
