@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
 import { MyData } from '../../providers/my-data';
-import { GoalItem } from '../../app/shared/goal-item';
 
 /**
  * Generated class for the CategoryPage page.
@@ -16,36 +15,33 @@ import { GoalItem } from '../../app/shared/goal-item';
   templateUrl: 'category-page.html',
 })
 export class CategoryPage {
-  private _goalIndex: number;
-  public myGoal: GoalItem;
-  public categories: string[] = [];
+  private _myCategories: string[] = [];
+  public allCategoryOptions: string[] = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public myData: MyData, public viewCtrl: ViewController) {
-    this._goalIndex = this.navParams.get('index');
-    this.myGoal = this.myData.getGoal(this._goalIndex);
+    this._myCategories = this.navParams.get('categories') || [];
 
     this.myData.loadCategories().then((data: any) => {
-      let categories = <string[]>JSON.parse(data);
-      this.myData.setCategories(categories);
-      this.categories = myData.getCategories();
+      let categoryOptions = <string[]>JSON.parse(data);
+      this.myData.setCategories(categoryOptions);
+      this.allCategoryOptions = myData.getCategories();
     });
   }
 
   public close() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss(this._myCategories);
   }
 
   // TODO: refactor so it's more efficient
   public isCategoryChecked(category: string): boolean {
-    if (this.myGoal.categoryLabels && this.myGoal.categoryLabels.length > 0) {
-      for (var i = 0; i < this.myGoal.categoryLabels.length; i++) {
-        var goalCategory = this.myGoal.categoryLabels[i];
+    if (this._myCategories.length > 0) {
+      for (var i = 0; i < this._myCategories.length; i++) {
+        var goalCategory = this._myCategories[i];
         if (category == goalCategory) {
           return true;
         }
       }
     }
-
     return false;
   }
 
@@ -53,14 +49,18 @@ export class CategoryPage {
   public onCategoryChange(e: any, category: string) {
     let wasChecked = this.isCategoryChecked(category);
     if (e.checked && !wasChecked) {
-      this.myGoal.categoryLabels.push(category);
+      this._myCategories.push(category);
     }
     else {
-      let i = this.myGoal.categoryLabels.indexOf(category);
+      this.removeCategory(category);
+    }
+  }
 
-      if (i != -1) {
-        this.myGoal.categoryLabels.splice(i, 1);
-      }
+  private removeCategory(category: string) {
+    let i = this._myCategories.indexOf(category);
+
+    if (i != -1) {
+      this._myCategories.splice(i, 1);
     }
   }
 

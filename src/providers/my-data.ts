@@ -54,9 +54,9 @@ export class MyData {
     this.storage.set('goals', myGoals);
   }
 
-  // Categories
+  // Category options
 
-  public addCatgeory(category: string) {
+  public addCategory(category: string) {
     this._categories.push(category);
   }
 
@@ -69,7 +69,7 @@ export class MyData {
   }
 
   public setCategories(categories: string[]) {
-    this._categories = categories || ['Health', 'Career', 'Relationships', 'Business', 'Wealth'];
+    this._categories = categories || ['Health', 'Career', 'Relationships', 'Business', 'Wealth', 'Other'];
   }
 
   public loadCategories(): Promise<any> {

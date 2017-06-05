@@ -8,23 +8,27 @@
 </ion-header>
 
 <ion-content padding>
-  <form *ngIf="newGoal" #form="ngForm" (ngSubmit)="createNewGoal()" novalidate>
+  <form *ngIf="newGoal" #form="ngForm" novalidate>
     <ion-item>
       <ion-label floating>I want to...</ion-label>
       <ion-input type="text" required [(ngModel)]="newGoal.title" name="title" ngControl="title"></ion-input>
     </ion-item>
+
     <ion-item>
       <ion-label floating>How will you accomplish this?</ion-label>
       <ion-textarea [(ngModel)]="newGoal.descriptionPlan" name="description" ngControl="description"></ion-textarea>
     </ion-item>
+
     <ion-item>
-      <ion-label floating>Category</ion-label>
-      <ion-input [(ngModel)]="category" name="category" ngControl="category"></ion-input>
+      <div>
+        <ion-badge *ngFor="let category of newGoal.categoryLabels" color="dark">{{category}}</ion-badge>
+      </div>
+       <button ion-button (click)="chooseCategories()" name="category" ngControl="category">Choose categories</button>
     </ion-item>
 
     <ion-footer>
       <ion-toolbar>
-        <button full ion-button type="submit" color="secondary" block>Create Goal</button>
+        <button full ion-button (click)="createNewGoal()" color="secondary" block>Create Goal</button>
       </ion-toolbar>
     </ion-footer>
   </form>

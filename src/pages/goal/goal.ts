@@ -70,14 +70,19 @@ export class GoalPage {
     confirm.present();
   }
 
-
   public showChangeColourPopup() {
     let popover = this.popoverCtrl.create('ChangeColorPopoverPage', { index: this._goalIndex });
     popover.present();
   }
 
   public goToCategoryPage() {
-    let categoryPage = this.modalCtrl.create('CategoryPage', { index: this._goalIndex });
+    let categoryPage = this.modalCtrl.create('CategoryPage', { categories: this.myGoal.categoryLabels });
+
+    categoryPage.onDidDismiss((categories: string[]) => {
+      this.myGoal.categoryLabels = categories;
+      this.myData.saveGoals();
+    });
+
     categoryPage.present();
   }
 

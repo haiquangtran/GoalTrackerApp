@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { GoalItem } from '../../app/shared/goal-item';
 import { MyData } from '../../providers/my-data';
 
@@ -18,7 +18,7 @@ export class AddGoalPage {
   public newGoal: GoalItem = new GoalItem();
   public category: string = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public myData: MyData) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public myData: MyData, public modalCtrl: ModalController) {
   }
 
   createNewGoal() {
@@ -32,7 +32,16 @@ export class AddGoalPage {
       .then(() => {
         this.close();
       });
+  }
 
+  public chooseCategories() {
+    let categories = this.modalCtrl.create('CategoryPage', { categories: this.newGoal.categoryLabels });
+
+    categories.onDidDismiss((categories: string[]) => {
+      this.newGoal.categoryLabels = categories;
+    });
+
+    categories.present();
   }
 
   close() {
