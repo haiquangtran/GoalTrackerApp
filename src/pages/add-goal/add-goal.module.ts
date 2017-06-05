@@ -13,4 +13,4 @@ import { AddGoalPage } from './add-goal';
     AddGoalPage
   ]
 })
-export class NewGoalModule {}
+export class AddGoalModule {}
