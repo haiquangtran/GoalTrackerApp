@@ -22,15 +22,7 @@ export class HomePage {
 
   public addPage() {
     let addGoal = this.modalCtrl.create('AddGoalPage');
-
-    addGoal.onDidDismiss((newGoal: GoalItem) => {
-      if (newGoal) {
-        this.myData.addGoal(newGoal);
-        this.myData.saveGoals();
-        this.openPage(this.myData.getGoals().length - 1);
-      }
-    })
-
+    
     addGoal.present();
   }
 

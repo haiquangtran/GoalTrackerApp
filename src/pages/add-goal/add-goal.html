@@ -10,12 +10,12 @@
 <ion-content padding>
   <form *ngIf="newGoal" #form="ngForm" (ngSubmit)="createNewGoal()" novalidate>
     <ion-item>
-      <ion-label floating>Goal: I want to...</ion-label>
+      <ion-label floating>I want to...</ion-label>
       <ion-input type="text" required [(ngModel)]="newGoal.title" name="title" ngControl="title"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label floating>Plan: How will you accomplish this?</ion-label>
-      <ion-textarea [(ngModel)]="newGoal.description" name="description" ngControl="description"></ion-textarea>
+      <ion-label floating>How will you accomplish this?</ion-label>
+      <ion-textarea [(ngModel)]="newGoal.descriptionPlan" name="description" ngControl="description"></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label floating>Category</ion-label>
