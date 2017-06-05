@@ -35,7 +35,7 @@ export class HomePage {
 
   // TODO: move to directive
   public calculateTitleFontSize(goal: GoalItem): string {
-    var titleLength = goal.title.length || 0;
+    var titleLength = goal && goal.title? goal.title.length : 0;
     if (titleLength > 0 && titleLength < 10) {
       return '5rem';
     }
