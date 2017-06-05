@@ -18,16 +18,13 @@
     </ion-row>
   </ion-grid>
 
-  <div class="goal-grid">
+  <div class="goal-grid" *ngIf="myData && myData.getGoals().length > 0">
     <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
       <ion-card [style.background-color]="goal.colour" (click)="openPage(goal, i)">
         <ion-card-content>
           <ion-card-title [style.font-size]="calculateTitleFontSize(goal)" color="dark">
             {{goal.title}}
           </ion-card-title>
-          <p class="italics">
-            {{goal.descriptionPlan || 'No description'}}
-          </p>
           <ion-list>
             <ion-item [style.background-color]="goal.colour" *ngFor="let subGoal of goal.subGoals; let j = index">
               <ion-label>{{subGoal.title}}</ion-label>
