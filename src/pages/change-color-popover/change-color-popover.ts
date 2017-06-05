@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { MyData } from '../../providers/my-data';
+import { GoalItem } from '../../app/shared/goal-item';
 
 /**
  * Generated class for the ChangeColorPopover page.
@@ -13,7 +15,9 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'change-color-popover.html',
 })
 export class ChangeColorPopoverPage {
-  public selectedColour: string;
+  private _goalIndex: number;
+  public myGoal: GoalItem;
+
   public allColours: string[] = [
     '#fff', '#FFF9C4', '#FFF59D', '#FFEE58',
     '#FFE0B2', '#FFCC80', '#FFA726', '#FB8C00',
@@ -25,8 +29,9 @@ export class ChangeColorPopoverPage {
     '#E1BEE7', '#CE93D8', '#BA68C8', '#AB47BC',
   ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
-    this.selectedColour = this.navParams.get('colour');
+  constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public myData: MyData) {
+    this._goalIndex = this.navParams.get('index');
+    this.myGoal = this.myData.getGoal(this._goalIndex);
   }
 
   public ionViewDidLoad() {
@@ -34,16 +39,15 @@ export class ChangeColorPopoverPage {
   }
 
   public close() {
-    this.viewCtrl.dismiss(this.selectedColour);
+    this.viewCtrl.dismiss();
   }
 
   public selectColour(colour: string) {
-    this.selectedColour = colour;
-    this.close();
+    this.myGoal.colour = colour;
   }
 
   public isSelected(colour: string): boolean {
-    return this.selectedColour == colour;
+    return this.myGoal.colour == colour;
   }
 
 }

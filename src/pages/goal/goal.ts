@@ -72,14 +72,14 @@ export class GoalPage {
 
 
   public presentPopover() {
-    let popover = this.popoverCtrl.create('ChangeColorPopoverPage', { colour: this.myGoal.colour || ''});
+    let popover = this.popoverCtrl.create('ChangeColorPopoverPage', { index: this._goalIndex });
 
-    popover.onDidDismiss((colour: string) => {
-      if (this.myGoal) {
-        this.myGoal.colour = colour;
-        this.myData.saveGoals();
-      }
-    });
+    // popover.onDidDismiss((colour: string) => {
+    //   if (this.myGoal) {
+    //     this.myGoal.colour = colour;
+    //     this.myData.saveGoals();
+    //   }
+    // });
 
     popover.present();
   }
