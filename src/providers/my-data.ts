@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
 
 import { GoalItem } from '../app/shared/goal-item';
+import { Settings } from '../app/shared/settings';
 
 /*
   Generated class for the MyData provider.
@@ -13,6 +14,7 @@ import { GoalItem } from '../app/shared/goal-item';
 */
 @Injectable()
 export class MyData {
+  private _settings: Settings = new Settings();
   private _categories: string[] = [];
   private _goals: GoalItem[] = [];
 
@@ -79,6 +81,25 @@ export class MyData {
   public saveCategories() {
     let myCategories = JSON.stringify(this._categories);
     this.storage.set('categories', myCategories);
+  }
+
+  // Settings
+
+  public getSettings(): Settings {
+    return this._settings;
+  }
+
+  public setSettings(settings: Settings) {
+    this._settings = settings;
+  }
+
+  public loadSettings(): Promise<any> {
+    return this.storage.get('settings');
+  }
+
+  public saveSettings() {
+    let mySettings = JSON.stringify(this._settings);
+    this.storage.set('settings', mySettings);
   }
 
 }

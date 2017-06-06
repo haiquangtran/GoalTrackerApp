@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { MyData } from '../../providers/my-data';
 import { GoalItem } from '../../app/shared/goal-item';
+import { Settings } from '../../app/shared/settings';
 
 @IonicPage()
 @Component({
@@ -9,7 +10,7 @@ import { GoalItem } from '../../app/shared/goal-item';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  public goalGridColumnCount: number = 1;
+  public goalGridColumnCount: number;
   public isDataLoaded: boolean = false;
   public rootPage: any = 'HomePage';
 
@@ -19,11 +20,17 @@ export class HomePage {
       this.myData.setGoals(savedGoals);
       this.isDataLoaded = true;
     });
+
+    this.myData.loadSettings().then((data: any) => {
+      let settings = <Settings>JSON.parse(data) || new Settings();
+      this.myData.setSettings(settings);
+      this.goalGridColumnCount = this.myData.getSettings().columnCount;
+    });
   }
 
   public addPage() {
     let addGoal = this.modalCtrl.create('AddGoalPage');
-    
+
     addGoal.present();
   }
 
@@ -33,17 +40,20 @@ export class HomePage {
     // we wouldn't want the back button to show in this scenario
     this.navCtrl.push('GoalPage', { index: index });
   }
-  
+
   public changeGridColumnCount() {
     if (this.goalGridColumnCount >= 2) {
       this.goalGridColumnCount = 0;
     }
     this.goalGridColumnCount++;
+
+    this.myData.getSettings().columnCount = this.goalGridColumnCount;
+    this.myData.saveSettings();
   }
 
   // TODO: move to directive
   public calculateTitleFontSize(goal: GoalItem): string {
-    var titleLength = goal && goal.title? goal.title.length : 0;
+    var titleLength = goal && goal.title ? goal.title.length : 0;
     if (titleLength > 0 && titleLength < 10) {
       return '5rem';
     }
