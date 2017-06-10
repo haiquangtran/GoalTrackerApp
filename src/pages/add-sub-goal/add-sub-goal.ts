@@ -9,10 +9,10 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
  */
 @IonicPage()
 @Component({
-  selector: 'page-sub-goal',
-  templateUrl: 'sub-goal.html',
+  selector: 'page-add-sub-goal',
+  templateUrl: 'add-sub-goal.html',
 })
-export class SubGoalPage {
+export class AddSubGoalPage {
   public newItem: any = { title: '', description: ''};
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {

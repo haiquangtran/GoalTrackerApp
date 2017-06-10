@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { SubGoalPage } from './sub-goal';
+import { AddSubGoalPage } from './add-sub-goal';
 
 @NgModule({
   declarations: [
-    SubGoalPage,
+    AddSubGoalPage,
   ],
   imports: [
-    IonicPageModule.forChild(SubGoalPage),
+    IonicPageModule.forChild(AddSubGoalPage),
   ],
   exports: [
-    SubGoalPage
+    AddSubGoalPage
   ]
 })
 export class SubGoalModule {}
