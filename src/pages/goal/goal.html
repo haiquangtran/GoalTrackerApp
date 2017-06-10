@@ -9,12 +9,12 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title color="secondary-dark">{{(myGoal?.title) || "My Goal"}}</ion-title>
+    <!--<ion-title color="secondary-dark">{{(myGoal?.title) || "My Goal"}}</ion-title>-->
     <ion-buttons end>
       <!--<button ion-button icon-only>
         <ion-icon name="create"></ion-icon>
       </button>-->
-      <button ion-button outline color="secondary">
+      <button ion-button outline color="secondary-dark">
         Complete
       </button>
     </ion-buttons>
@@ -28,7 +28,7 @@
       My Goal
     </ion-card-header>
     <ion-card-content>
-      <ion-card-title color="secondary">
+      <ion-card-title color="dark">
         {{myGoal?.title}}
       </ion-card-title>
       <div>
@@ -45,7 +45,7 @@
       My Plan
     </ion-card-header>
     <ion-card-content>
-      <ion-card-title color="secondary">
+      <ion-card-title color="dark">
         {{myGoal?.descriptionPlan}}
       </ion-card-title>
       {{myGoal?.descriptionPlan}}
@@ -59,7 +59,7 @@
       My Progress
     </ion-card-header>
     <ion-card-content>
-      <ion-card-title color="secondary">
+      <ion-card-title color="dark">
 
       </ion-card-title>
       <div>
@@ -76,20 +76,30 @@
       My Milestones
     </ion-card-header>
     <ion-card-content>
-      <ion-card-title color="secondary">
+      <ion-card-title color="dark">
         <!--<ion-icon name="add-circle"></ion-icon>-->
         <button ion-button outline (click)="addItem()" color="secondary">Add Milestone</button>
       </ion-card-title>
-      <ion-list>
-        <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
-        <ion-item *ngFor="let task of myGoal?.subGoals; let i = index">
-          <ion-label>{{task.title}}</ion-label>
-          <span item-left>18 min</span>
-          <span item-left>Weighting</span>
-          <button ion-button outline>COMPLETE</button>
-        </ion-item>
-      </ion-list>
     </ion-card-content>
+
+    <ion-list>
+      <ion-list-header>
+        Milestones
+      </ion-list-header>
+      <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
+      <ion-item-sliding *ngFor="let task of myGoal?.subGoals; let i = index">
+        <ion-item>
+          <h1>{{task.title}}</h1>
+          <span ion-text item-start class="item-bold" color="secondary">15 days left</span>
+          <span ion-text item-start color="subtle">(weighting)</span>
+          <button ion-button color="danger" clear item-end icon-left><ion-icon name="checkmark"></ion-icon>Complete</button>
+        </ion-item>
+
+        <ion-item-options>
+          <button ion-button color="primary" (click)="archive()">Archive</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
   </ion-card>
 
   <hr>
@@ -126,7 +136,6 @@
   <ion-toolbar color="dark">
     <div>
       <h5>156 days left</h5>
-      <p>{{myGoal?.createdDate || '' | date: 'short'}}</p>
     </div>
 
     <!--<ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>-->
