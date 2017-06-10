@@ -30,7 +30,7 @@ export class GoalPage {
   }
 
   public addItem() {
-    let addModal = this.modalCtrl.create('SubGoalPage');
+    let addModal = this.modalCtrl.create('AddSubGoalPage');
 
     addModal.onDidDismiss((item: any) => {
       if (item) {
