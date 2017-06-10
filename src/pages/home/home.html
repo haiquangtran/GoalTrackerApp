@@ -28,7 +28,7 @@
     <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
       <ion-card [style.background-color]="goal.colour" (click)="openPage(i)">
         <ion-card-content>
-          <ion-card-title [style.font-size]="calculateTitleFontSize(goal)" color="dark">
+          <ion-card-title [style.font-size]="calculateTitleFontSize(goal)" color="secondary">
             {{goal.title}}
           </ion-card-title>
           <ion-list>

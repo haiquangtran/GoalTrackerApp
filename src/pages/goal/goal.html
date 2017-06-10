@@ -10,101 +10,133 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title color="secondary-dark">{{(myGoal?.title) || "My Goal"}}</ion-title>
-    <!--<ion-buttons end>
-      <button ion-button icon-only>
+    <ion-buttons end>
+      <!--<button ion-button icon-only>
         <ion-icon name="create"></ion-icon>
+      </button>-->
+      <button ion-button outline color="secondary">
+        Complete
       </button>
-    </ion-buttons>-->
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content [style.background-color]="myGoal && myGoal.colour" padding>
-  <div>
-    <div>
-      <h1>
-        My Goal
-      </h1>
-      <p>
+<ion-content [style.background-color]="myGoal?.colour" padding>
+
+  <ion-card>
+    <ion-card-header>
+      My Goal
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title color="secondary">
         {{myGoal?.title}}
-      </p>
-      <div *ngIf="myGoal">
-        <ion-badge *ngFor="let category of myGoal.categoryLabels" color="dark">{{category}}</ion-badge>
+      </ion-card-title>
+      <div>
+        <p>Created on {{myGoal?.createdDate || '' | date: 'short'}}</p>
+        <ion-badge *ngFor="let category of myGoal?.categoryLabels" color="dark">{{category}}</ion-badge>
       </div>
-    </div>
+    </ion-card-content>
+  </ion-card>
 
-    <div>
-      <h1>
-        My Plan
-      </h1>
-      <p>
+  <hr>
+
+  <ion-card>
+    <ion-card-header>
+      My Plan
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title color="secondary">
         {{myGoal?.descriptionPlan}}
+      </ion-card-title>
+      {{myGoal?.descriptionPlan}}
+    </ion-card-content>
+  </ion-card>
+
+  <hr>
+
+  <ion-card>
+    <ion-card-header>
+      My Progress
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title color="secondary">
+
+      </ion-card-title>
+      <div>
+        <p>3 Days since start of goal</p>
+        <p>150 Days until</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <hr>
+
+  <ion-card>
+    <ion-card-header>
+      My Milestones
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title color="secondary">
+        <!--<ion-icon name="add-circle"></ion-icon>-->
+        <button ion-button outline (click)="addItem()" color="secondary">Add Milestone</button>
+      </ion-card-title>
+      <ion-list>
+        <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
+        <ion-item *ngFor="let task of myGoal?.subGoals; let i = index">
+          <ion-label>{{task.title}}</ion-label>
+          <span item-left>18 min</span>
+          <span item-left>Weighting</span>
+          <button ion-button outline>COMPLETE</button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <hr>
+
+  <ion-card>
+    <ion-card-header>
+      Accomplishments
+    </ion-card-header>
+    <ion-card-content>
+      <ion-card-title>
+        TODO:
+      </ion-card-title>
+      <p>
+        Notes:
       </p>
-    </div>
+      <p>
+        Habits:
+      </p>
+      <p>
+        Sub Goals:
+      </p>
+      <p>
+        Time left:
+      </p>
+    </ion-card-content>
+  </ion-card>
 
-    <div>
-      <h1>
-        Progress
-      </h1>
-    </div>
-
-    <div>
-      <ion-card>
-        <ion-card-content>
-          <ion-card-title>
-            Milestones
-          </ion-card-title>
-          <ion-list *ngIf="myGoal">
-            <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
-            <ion-item *ngFor="let task of myGoal.subGoals; let i = index">
-              <ion-label>{{task.title}}</ion-label>
-            </ion-item>
-            <button ion-button icon-only (click)="addItem()"><ion-icon name="add-circle"></ion-icon></button>
-          </ion-list>
-        </ion-card-content>
-      </ion-card>
-    </div>
-
-    <ion-card>
-      <ion-card-content>
-        <ion-card-title>
-          Accomplishments
-        </ion-card-title>
-        <p>
-          Notes:
-        </p>
-        <p>
-          Habits:
-        </p>
-        <p>
-          Sub Goals:
-        </p>
-        <p>
-          Time left:
-        </p>
-      </ion-card-content>
-    </ion-card>
-
-  </div>
-
-  <ion-fab right top edge>
+  <!--<ion-fab right top edge>
     <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
-  </ion-fab>
+  </ion-fab>-->
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color="dark">
     <div>
-      <h5>Created {{myGoal?.createdDate || '' | date: 'short'}}</h5>
+      <h5>156 days left</h5>
+      <p>{{myGoal?.createdDate || '' | date: 'short'}}</p>
     </div>
-    
+
     <!--<ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>-->
     <ion-buttons start>
-      <button ion-button icon-only icon-left color="royal">
+      <!--<button ion-button icon-only icon-left color="royal">
         <ion-icon name="alarm"></ion-icon>
       </button>
       <button ion-button icon-only icon-left color="royal">
         <ion-icon name="archive"></ion-icon>
-      </button>
+      </button>-->
       <!--<button ion-button icon-only icon-left color="royal">
         <ion-icon name="bookmark"></ion-icon>
       </button>-->
