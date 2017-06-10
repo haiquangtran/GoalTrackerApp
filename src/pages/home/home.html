@@ -55,7 +55,7 @@
     <div class="row">
       <div class="col">
         <h2>{{myData.getGoals().length}}</h2>
-        <p>Active goals</p>
+        <p>Active goal<span *ngIf="myData?.getGoals().length > 1">s</span></p>
       </div>
       <div class="divider"></div>
       <div class="col">

@@ -21,7 +21,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content [style.background-color]="myGoal?.colour" padding>
+<ion-content [style.background-color]="getBackgroundColour()" padding>
 
   <ion-card>
     <ion-card-header>
@@ -127,9 +127,9 @@
     </ion-card-content>
   </ion-card>
 
-  <!--<ion-fab right top edge>
+  <ion-fab right top edge>
     <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
-  </ion-fab>-->
+  </ion-fab>
 </ion-content>
 
 <ion-footer>

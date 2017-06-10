@@ -86,4 +86,8 @@ export class GoalPage {
     categoryPage.present();
   }
 
+  public getBackgroundColour(): string {
+    return (this.myGoal && this.myGoal.colour !== '#fff'? this.myGoal.colour : '#ced6e3');
+  }
+
 }
