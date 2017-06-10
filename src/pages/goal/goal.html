@@ -9,13 +9,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <!--<ion-title color="secondary-dark">{{(myGoal?.title) || "My Goal"}}</ion-title>-->
+    <ion-title color="secondary-dark">{{myGoal?.isCompleted ? "Goal Completed" : "Goal Active" }}</ion-title>
     <ion-buttons end>
       <!--<button ion-button icon-only>
         <ion-icon name="create"></ion-icon>
       </button>-->
-      <button ion-button outline color="secondary-dark">
-        Complete
+      <button (click)="toggleCompletion()" ion-button icon-only clear color="secondary-dark">
+        <ion-icon name="checkmark"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -127,40 +127,48 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-fab right top edge>
+  <ion-fab right bottom edge>
     <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
   </ion-fab>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar color="dark">
-    <div>
-      <h5>156 days left</h5>
-    </div>
-
-    <!--<ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>-->
-    <ion-buttons start>
-      <!--<button ion-button icon-only icon-left color="royal">
-        <ion-icon name="alarm"></ion-icon>
-      </button>
-      <button ion-button icon-only icon-left color="royal">
-        <ion-icon name="archive"></ion-icon>
-      </button>-->
-      <!--<button ion-button icon-only icon-left color="royal">
-        <ion-icon name="bookmark"></ion-icon>
-      </button>-->
-      <button (click)="showChangeColourPopup()" ion-button icon-only icon-left color="royal">
-        <ion-icon name="color-palette"></ion-icon>
-      </button>
-      <button (click)="goToCategoryPage()" ion-button icon-only icon-left color="royal">
-        <ion-icon name="pricetags"></ion-icon>
-      </button>
-      <!--<button ion-button icon-only icon-left color="royal">
-        <ion-icon name="settings"></ion-icon>
-      </button>-->
-      <button (click)="deleteGoal()" ion-button icon-left color="royal">
-        <ion-icon name="trash"></ion-icon>
-      </button>
-    </ion-buttons>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div>
+            <h2>15</h2>
+            <p>Days left</p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <!--<ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>-->
+          <ion-buttons start>
+              <!--<button ion-button icon-only icon-left color="royal">
+              <ion-icon name="alarm"></ion-icon>
+              </button>
+              <button ion-button icon-only icon-left color="royal">
+              <ion-icon name="archive"></ion-icon>
+              </button>-->
+              <!--<button ion-button icon-only icon-left color="royal">
+              <ion-icon name="bookmark"></ion-icon>
+              </button>-->
+              <button (click)="showChangeColourPopup()" ion-button icon-only icon-left color="royal">
+              <ion-icon name="color-palette"></ion-icon>
+              </button>
+              <button (click)="goToCategoryPage()" ion-button icon-only icon-left color="royal">
+              <ion-icon name="pricetags"></ion-icon>
+              </button>
+              <!--<button ion-button icon-only icon-left color="royal">
+              <ion-icon name="settings"></ion-icon>
+              </button>-->
+              <button (click)="deleteGoal()" ion-button icon-left color="royal">
+              <ion-icon name="trash"></ion-icon>
+            </button>
+          </ion-buttons>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
 </ion-footer>

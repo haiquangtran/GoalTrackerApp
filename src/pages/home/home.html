@@ -14,7 +14,7 @@
 </ion-header>
 
 <ion-content class="home-content">
-  <ion-grid class="goal-grid-empty" *ngIf="isDataLoaded && myData.getGoals().length == 0">
+  <ion-grid class="goal-grid-empty" *ngIf="isDataLoaded && myData?.getGoals().length == 0">
     <ion-row center text-center>
       <ion-col>
         <h1>
@@ -24,9 +24,9 @@
     </ion-row>
   </ion-grid>
 
-  <div class="goal-grid" [style.column-count]="goalGridColumnCount" *ngIf="myData && myData.getGoals().length > 0">
-    <div class="goal-grid-item" *ngFor="let goal of myData.getGoals(); let i = index">
-      <ion-card [style.background-color]="goal.colour" (click)="openPage(i)">
+  <div class="goal-grid" [style.column-count]="goalGridColumnCount" *ngIf="myData?.getGoals().length > 0">
+    <div class="goal-grid-item" *ngFor="let goal of getFilteredGoals(myData.getGoals(), isCompletedFilter); let i = index">
+      <ion-card [style.background-color]="goal.colour" (click)="openPage(i, isCompletedFilter)">
         <ion-card-content>
           <ion-card-title [style.font-size]="calculateTitleFontSize(goal)" color="dark">
             {{goal.title}}
@@ -53,14 +53,15 @@
 <ion-footer>
   <ion-toolbar class="footer-tabs" color="dark">
     <div class="row">
-      <div class="col">
-        <h2>{{myData.getGoals().length}}</h2>
-        <p>Active goal<span *ngIf="myData?.getGoals().length > 1">s</span></p>
+      <!--TODO: Fix so it's more efficient-->
+      <div class="col" [class.active]="!isCompletedFilter" (click)="setIsCompletedFilter(false)">
+        <h2>{{getFilteredGoals(myData.getGoals(), false)?.length}}</h2>
+        <p>Active goal<span *ngIf="getFilteredGoals(myData.getGoals(), true)?.length > 1">s</span></p>
       </div>
       <div class="divider"></div>
-      <div class="col">
-        <h2>0</h2>
-        <p>Completed goals</p>
+      <div class="col" [class.active]="isCompletedFilter" (click)="setIsCompletedFilter(true)">
+        <h2>{{getFilteredGoals(myData.getGoals(), true)?.length}}</h2>
+        <p>Completed goal<span *ngIf="getFilteredGoals(myData.getGoals(), false)?.length > 1">s</span></p>
       </div>
     </div>
   </ion-toolbar>

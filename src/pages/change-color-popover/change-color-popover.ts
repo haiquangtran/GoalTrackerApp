@@ -15,7 +15,6 @@ import { GoalItem } from '../../app/shared/goal-item';
   templateUrl: 'change-color-popover.html',
 })
 export class ChangeColorPopoverPage {
-  private _goalIndex: number;
   public myGoal: GoalItem;
 
   public allColours: string[] = [
@@ -30,8 +29,7 @@ export class ChangeColorPopoverPage {
   ];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController, public myData: MyData) {
-    this._goalIndex = this.navParams.get('index');
-    this.myGoal = this.myData.getGoal(this._goalIndex);
+    this.myGoal = <GoalItem>this.navParams.get('myGoal');
   }
 
   public ionViewDidLoad() {

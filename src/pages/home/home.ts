@@ -10,6 +10,7 @@ import { Settings } from '../../app/shared/settings';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  public isCompletedFilter: boolean = false;
   public goalGridColumnCount: number;
   public isDataLoaded: boolean = false;
   public rootPage: any = 'HomePage';
@@ -35,10 +36,10 @@ export class HomePage {
   }
 
   // Needs index parameter for deleting the page in future
-  public openPage(index: number) {
+  public openPage(index: number, filter: boolean) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.navCtrl.push('GoalPage', { index: index });
+    this.navCtrl.push('GoalPage', { index: index, isCompletedFilter: filter });
   }
 
   public changeGridColumnCount() {
@@ -67,6 +68,14 @@ export class HomePage {
       return '2rem';
     }
     return '1rem';
+  }
+
+  public getFilteredGoals(goals: GoalItem[], isCompletedFilter: boolean = false): GoalItem[] {
+    return this.myData.getGoals().filter(x => x.isCompleted == isCompletedFilter);
+  }
+
+  public setIsCompletedFilter(isTrue: boolean) {
+    this.isCompletedFilter = isTrue;
   }
 
 }

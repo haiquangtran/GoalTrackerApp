@@ -71,7 +71,7 @@ export class MyData {
   }
 
   public setCategories(categories: string[]) {
-    this._categories = categories || ['Health', 'Career', 'Relationships', 'Business', 'Wealth', 'Other'];
+    this._categories = categories || ['Health', 'Career', 'Relationships', 'Business', 'Wealth', 'Family', 'Social', 'Other'];
   }
 
   public loadCategories(): Promise<any> {

@@ -22,7 +22,10 @@ export class GoalPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController, public myData: MyData,
     public alertCtrl: AlertController, public popoverCtrl: PopoverController) {
     this._goalIndex = this.navParams.get('index');
-    this.myGoal = this.myData.getGoal(this._goalIndex);
+    let isCompletedFilter = this.navParams.get('isCompletedFilter');
+    
+    // TODO: optimize to be more efficient
+    this.myGoal = this.myData.getGoals().filter(x => x.isCompleted == isCompletedFilter)[this._goalIndex];
   }
 
   public ionViewDidLoad() {
@@ -71,7 +74,7 @@ export class GoalPage {
   }
 
   public showChangeColourPopup() {
-    let popover = this.popoverCtrl.create('ChangeColorPopoverPage', { index: this._goalIndex });
+    let popover = this.popoverCtrl.create('ChangeColorPopoverPage', { myGoal: this.myGoal });
     popover.present();
   }
 
@@ -87,7 +90,12 @@ export class GoalPage {
   }
 
   public getBackgroundColour(): string {
-    return (this.myGoal && this.myGoal.colour !== '#fff'? this.myGoal.colour : '#ced6e3');
+    return (this.myGoal && this.myGoal.colour !== '#fff' ? this.myGoal.colour : '#ced6e3');
+  }
+
+  public toggleCompletion() {
+    this.myGoal.isCompleted = !this.myGoal.isCompleted;
+    this.myData.saveGoals();
   }
 
 }
