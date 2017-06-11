@@ -24,8 +24,15 @@ export class GoalPage {
     this._goalIndex = this.navParams.get('index');
     let isCompletedFilter = this.navParams.get('isCompletedFilter');
     
-    // TODO: optimize to be more efficient
-    this.myGoal = this.myData.getGoals().filter(x => x.isCompleted == isCompletedFilter)[this._goalIndex];
+    if (isCompletedFilter == undefined) {
+      // Adding new goal
+      this.myGoal = this.myData.getGoal(this._goalIndex);
+    }
+    else {
+      // TODO: optimize to be more efficient
+      this.myGoal = this.myData.getGoals().filter(x => x.isCompleted == isCompletedFilter)[this._goalIndex];
+    }
+    
   }
 
   public ionViewDidLoad() {

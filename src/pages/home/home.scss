@@ -3,14 +3,7 @@
 page-home {
     // Variables
     $card-padding: 5px;
-
-    ion-card-header {
-        white-space: normal;
-        color: map-get($colors, white) !important;
-        background: map-get($colors, dark);
-        font-weight: bold;
-    }
-
+    
     .home-content {
         background-color: #ced6e3;
     }

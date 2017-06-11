@@ -11,12 +11,12 @@
     </button>
     <ion-title color="secondary-dark">{{myGoal?.isCompleted ? "Goal Completed" : "Goal Active" }}</ion-title>
     <ion-buttons end>
-      <!--<button ion-button icon-only>
+      <button ion-button icon-only color="secondary-dark">
         <ion-icon name="create"></ion-icon>
-      </button>-->
-      <button (click)="toggleCompletion()" ion-button icon-only clear color="secondary-dark">
-        <ion-icon name="checkmark"></ion-icon>
       </button>
+      <!--<button (click)="toggleCompletion()" ion-button icon-only clear color="secondary-dark">
+        <ion-icon name="checkmark"></ion-icon>
+      </button>-->
     </ion-buttons>
   </ion-navbar>
 </ion-header>
@@ -36,11 +36,9 @@
         <ion-badge *ngFor="let category of myGoal?.categoryLabels" color="dark">{{category}}</ion-badge>
       </div>
     </ion-card-content>
-  </ion-card>
 
-  <hr>
+    <hr>
 
-  <ion-card>
     <ion-card-header>
       My Plan
     </ion-card-header>
@@ -50,11 +48,9 @@
       </ion-card-title>
       {{myGoal?.descriptionPlan}}
     </ion-card-content>
-  </ion-card>
 
-  <hr>
+    <hr>
 
-  <ion-card>
     <ion-card-header>
       My Progress
     </ion-card-header>
@@ -67,11 +63,9 @@
         <p>150 Days until</p>
       </div>
     </ion-card-content>
-  </ion-card>
 
-  <hr>
+    <hr>
 
-  <ion-card>
     <ion-card-header>
       My Milestones
     </ion-card-header>
@@ -127,9 +121,9 @@
     </ion-card-content>
   </ion-card>
 
-  <ion-fab right bottom edge>
+  <!--<ion-fab right bottom edge>
     <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
-  </ion-fab>
+  </ion-fab>-->
 </ion-content>
 
 <ion-footer>
@@ -137,33 +131,43 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <div>
+  
+          <button (click)="toggleCompletion()" ion-button clear color="energized">
+            <span *ngIf="!myGoal?.isCompleted">
+              Mark As Complete
+            </span>
+            <span *ngIf="myGoal?.isCompleted">
+              Mark As Incomplete
+            </span>
+          </button>
+
+          <!--<div>
             <h2>15</h2>
-            <p>Days left</p>
-          </div>
+            <p>Days left for target completion</p>
+          </div>-->
         </ion-col>
         <ion-col>
           <!--<ion-title end>Created on {{myGoal && myGoal.createdDate}}</ion-title>-->
           <ion-buttons start>
-              <!--<button ion-button icon-only icon-left color="royal">
+            <!--<button ion-button icon-only icon-left color="royal">
               <ion-icon name="alarm"></ion-icon>
               </button>
               <button ion-button icon-only icon-left color="royal">
               <ion-icon name="archive"></ion-icon>
               </button>-->
-              <!--<button ion-button icon-only icon-left color="royal">
+            <!--<button ion-button icon-only icon-left color="royal">
               <ion-icon name="bookmark"></ion-icon>
               </button>-->
-              <button (click)="showChangeColourPopup()" ion-button icon-only icon-left color="royal">
+            <button (click)="showChangeColourPopup()" ion-button icon-only icon-left color="secondary-dark">
               <ion-icon name="color-palette"></ion-icon>
               </button>
-              <button (click)="goToCategoryPage()" ion-button icon-only icon-left color="royal">
+            <button (click)="goToCategoryPage()" ion-button icon-only icon-left color="secondary-dark">
               <ion-icon name="pricetags"></ion-icon>
               </button>
-              <!--<button ion-button icon-only icon-left color="royal">
+            <!--<button ion-button icon-only icon-left color="royal">
               <ion-icon name="settings"></ion-icon>
               </button>-->
-              <button (click)="deleteGoal()" ion-button icon-left color="royal">
+            <button (click)="deleteGoal()" ion-button icon-left color="secondary-dark">
               <ion-icon name="trash"></ion-icon>
             </button>
           </ion-buttons>
