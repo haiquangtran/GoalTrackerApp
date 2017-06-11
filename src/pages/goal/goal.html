@@ -82,15 +82,17 @@
       </ion-list-header>
       <!--[class.completed]="item.isCompleted" (click)="viewItem(item)" (swipe)="toggleItemCompletion(item)" (press)="deleteItem(i)"-->
       <ion-item-sliding *ngFor="let task of myGoal?.subGoals; let i = index">
-        <ion-item>
+        <ion-item (click)="openSubGoalDetails(i)">
           <h1>{{task.title}}</h1>
           <span ion-text item-start class="item-bold" color="secondary">15 days left</span>
           <span ion-text item-start color="subtle">(weighting)</span>
-          <button ion-button color="danger" clear item-end icon-left><ion-icon name="checkmark"></ion-icon>Complete</button>
+          <button *ngIf="task?.isCompleted" ion-button outline color="secondary-light">
+            Completed
+          </button>
         </ion-item>
 
         <ion-item-options>
-          <button ion-button color="primary" (click)="archive()">Archive</button>
+          <button ion-button color="primary" (click)="toggleSubGoalCompletion(task)">Mark As Complete</button>
         </ion-item-options>
       </ion-item-sliding>
     </ion-list>

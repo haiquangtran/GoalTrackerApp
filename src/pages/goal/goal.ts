@@ -23,7 +23,7 @@ export class GoalPage {
     public alertCtrl: AlertController, public popoverCtrl: PopoverController) {
     this._goalIndex = this.navParams.get('index');
     let isCompletedFilter = this.navParams.get('isCompletedFilter');
-    
+
     if (isCompletedFilter == undefined) {
       // Adding new goal
       this.myGoal = this.myData.getGoal(this._goalIndex);
@@ -32,7 +32,7 @@ export class GoalPage {
       // TODO: optimize to be more efficient
       this.myGoal = this.myData.getGoals().filter(x => x.isCompleted == isCompletedFilter)[this._goalIndex];
     }
-    
+
   }
 
   public ionViewDidLoad() {
@@ -107,4 +107,14 @@ export class GoalPage {
     this.myData.saveGoals();
   }
 
+  public openSubGoalDetails(subGoalIndex: number) {
+    let subGoalDetails = this.modalCtrl.create('SubGoalDetailsPage', { myGoal: this.myGoal, index: subGoalIndex });
+
+    subGoalDetails.present();
+  }
+
+  public toggleSubGoalCompletion(subGoal: any) {
+    subGoal.isCompleted = !subGoal.isCompleted;
+  }
+  
 }

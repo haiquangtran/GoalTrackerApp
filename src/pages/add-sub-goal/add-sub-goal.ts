@@ -13,7 +13,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   templateUrl: 'add-sub-goal.html',
 })
 export class AddSubGoalPage {
-  public newItem: any = { title: '', description: ''};
+  public newItem: any = { title: '', description: '', isCompleted: false };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public view: ViewController) {
   }
