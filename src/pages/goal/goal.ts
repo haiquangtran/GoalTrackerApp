@@ -69,6 +69,8 @@ export class GoalPage {
         {
           text: 'Yes',
           handler: () => {
+            // TODO: Refactor the whole filtered list approach
+            // TODO: implement removing goals
             this.myData.removeGoal(this._goalIndex);
             this.myData.saveGoals();
             this.navCtrl.setRoot('HomePage');
